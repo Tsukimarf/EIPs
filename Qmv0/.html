@@ -342,7 +342,7 @@ async function callApi(){
   try{
     const res = await fetch(base + ep);
     const json = await res.json();
-    statusEl.innerHTML = '<span class="valid">✓ ' + res.status + '</span>';
+    statusEl.innerHTML = '<span class="' + (res.ok ? 'valid' : 'invalid') + '">' + (res.ok ? '✓' : '✗') + ' ' + res.status + '</span>';
     out.textContent = JSON.stringify(json, null, 2);
   }catch(e){
 statusEl.textContent = '✗ request failed — is the API running and CORS-enabled? (' + e.message + ')';
