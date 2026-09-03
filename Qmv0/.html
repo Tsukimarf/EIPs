@@ -345,7 +345,7 @@ async function callApi(){
     statusEl.innerHTML = '<span class="valid">✓ ' + res.status + '</span>';
     out.textContent = JSON.stringify(json, null, 2);
   }catch(e){
-    statusEl.innerHTML = '<span class="invalid">✗ request failed — is the API running and CORS-enabled? (' + e.message + ')</span>';
+statusEl.textContent = '✗ request failed — is the API running and CORS-enabled? (' + e.message + ')';
     out.textContent = '';
   }
 }
