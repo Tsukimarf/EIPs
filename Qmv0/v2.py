@@ -264,6 +264,8 @@ class QuantumEngine:
         identity.nonce += 1
 
         msg_hash = tx.signing_hash()
+        if tx.tx_id != to_hex(msg_hash):
+            return False
         leaf = identity.next_leaf
         identity.next_leaf += 1
         tx.leaf_index = leaf
