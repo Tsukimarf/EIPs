@@ -299,7 +299,7 @@ async function createIdentityAndSend(){
   const chain = document.getElementById('liveChain').value;
   const poolSize = parseInt(document.getElementById('livePool').value) || 8;
   const to = document.getElementById('liveTo').value;
-  const amount = parseInt(document.getElementById('liveAmount').value) || 0;
+  const amount = Math.max(0, parseInt(document.getElementById('liveAmount').value) || 0);
 
   const genesisSeed = await sha256(enc.encode('browser-' + Date.now()));
   const keypairs=[], commitments=[];
