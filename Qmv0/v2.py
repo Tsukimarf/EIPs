@@ -231,7 +231,7 @@ class QuantumEngine:
         self._adapters: Dict[Chain, ChainAdapter] = {c: make_adapter(c) for c in Chain}
 
     def _next_seed(self) -> bytes:
-        base = self._seed_counter.to_bytes(8, "big")
+        base = self._seed_counter.to_bytes(8, "big") + b"\x00" * 24
         self._seed_counter += 1
         return sha256(base)
 
