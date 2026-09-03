@@ -278,7 +278,7 @@ class QuantumEngine:
 
     def verify_transaction(self, tx: QuantumTransaction) -> bool:
         identity = self._identities.get(tx.from_quantum_addr)
-        if identity is None or tx.leaf_index >= len(identity.keypairs):
+        if identity is None or not (0 <= tx.leaf_index < len(identity.keypairs)):
             return False
         msg_hash = tx.signing_hash()
         if not LamportOTS.verify(identity.keypairs[tx.leaf_index]["public_key"], msg_hash, tx.signature):
