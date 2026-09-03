@@ -331,6 +331,8 @@ QuantumTransaction QuantumEngine::send(const std::string& from_addr_hex, Chain c
         throw std::runtime_error("OTS pool exhausted for identity " + from_addr_hex + " -- rotate identity");
 
     QuantumTransaction tx;
+    if (id.chain != c)
+        throw std::invalid_argument("identity belongs to a different chain");
     tx.chain = c;
     tx.from_quantum_addr = from_addr_hex;
     tx.to_address = to_address;
