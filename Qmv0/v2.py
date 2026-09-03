@@ -194,6 +194,8 @@ class QuantumTransaction:
             "nonce": self.nonce,
             "timestamp_unix": self.timestamp_unix,
             "leaf_index": self.leaf_index,
+            "signature": [to_hex(item) for item in self.signature],
+            "merkle_proof": [to_hex(item) for item in self.merkle_proof],
         }
 
 
