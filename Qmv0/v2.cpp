@@ -346,7 +346,8 @@ QuantumTransaction QuantumEngine::send(const std::string& from_addr_hex, Chain c
     tx.merkle_proof = id.tree.proof(leaf);
     tx.tx_id = to_hex(msg_hash);
 
-    adapters_[(int)c]->broadcast(tx);
+    if (!adapters_[(int)c]->broadcast(tx))
+        throw std::runtime_error("chain adapter rejected transaction");
     mempool_.push_back(tx);
     return tx;
 }
