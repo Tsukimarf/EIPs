@@ -271,7 +271,8 @@ class QuantumEngine:
         tx.merkle_proof = identity.tree.proof(leaf)
         tx.tx_id = to_hex(msg_hash)
 
-        self._adapters[chain].broadcast(tx)
+        if not self._adapters[chain].broadcast(tx):
+            raise RuntimeError(f"broadcast rejected for {chain.value}")
         self._mempool.append(tx)
         return tx
 
